@@ -1,5 +1,6 @@
 package com.pedrom.workshopmongo.domain;
 
+import com.pedrom.workshopmongo.dto.AuthorDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,18 +17,18 @@ public class Post implements Serializable {
     private Instant date;
     private String title;
     private String body;
-    private User user;
+    private AuthorDTO author;
 
     public Post() {
 
     }
 
-    public Post(String id, Instant date, String title, String body, User user) {
+    public Post(String id, Instant date, String title, String body, AuthorDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.body = body;
-        this.user = user;
+        this.author = author;
     }
 
     @Override
@@ -38,12 +39,12 @@ public class Post implements Serializable {
         return Objects.equals(id, post.id);
     }
 
-    public User getUser() {
-        return user;
+    public AuthorDTO getAuthor () {
+        return author;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAuthor(AuthorDTO author) {
+        this.author = author;
     }
 
     @Override

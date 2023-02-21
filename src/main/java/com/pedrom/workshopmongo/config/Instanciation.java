@@ -2,6 +2,7 @@ package com.pedrom.workshopmongo.config;
 
 import com.pedrom.workshopmongo.domain.Post;
 import com.pedrom.workshopmongo.domain.User;
+import com.pedrom.workshopmongo.dto.AuthorDTO;
 import com.pedrom.workshopmongo.repository.PostRepository;
 import com.pedrom.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,12 @@ public class Instanciation implements CommandLineRunner {
         User u1 = new User(null, "Maria Brown", "maria@gmail.com");
         User u2 = new User(null, "Alex Green", "alex@gmail.com");
         User u3 = new User(null, "Bob Grey", "bob@gmail.com");
-
-        Post p1 = new Post(null, Instant.now(), "Bom dia", "Hoje foi um lindo dia", u1);
-        Post p2 = new Post(null, Instant.now(), "Partiu viagem", "Vou para Ubatuba, uhuu!", u1);
-
         userRepository.saveAll(Arrays.asList(u1,u2,u3));
+        
+
+        Post p1 = new Post(null, Instant.now(), "Bom dia", "Hoje foi um lindo dia", new AuthorDTO(u1));
+        Post p2 = new Post(null, Instant.now(), "Partiu viagem", "Vou para Ubatuba, uhuu!", new AuthorDTO(u1));
+
         postRepository.saveAll(Arrays.asList(p1,p2));
     }
 }
